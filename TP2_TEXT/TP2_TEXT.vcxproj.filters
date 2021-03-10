@@ -27,7 +27,4 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="rawdata.txt" />
-  </ItemGroup>
 </Project>
