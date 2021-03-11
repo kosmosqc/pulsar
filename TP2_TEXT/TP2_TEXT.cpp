@@ -1,6 +1,5 @@
 //Alain Gionet
 #include <iostream>
-#include <sstream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
@@ -10,19 +9,18 @@ std::vector<Datapoint>enOrdre(std::vector<Datapoint> data);
 
 int main()
 {
-    std::ifstream inputFile("rawdata.txt");
-    std::string ligne;
     std::vector<Datapoint> data;
-    while (getline(inputFile, ligne))
+    std::ifstream linestream("rawdata.txt");
+    std::string id,timestamp;
+    double latitude,longitude,temprature;
+    while (linestream >> latitude >> longitude >> id >> temprature >> timestamp)
     {
-        std::istringstream ss(ligne);
-        std::string id,timestamp;
-        
-        double latitude,longitude, temprature;
-        ss >> latitude >> longitude >> id >> temprature >> timestamp;
         data.push_back(Datapoint(latitude, longitude, temprature, timestamp));
     }
+    linestream.close();
+
     data = enOrdre(data);
+
     std::ofstream outfile("candata.txt");
     for (int i = 0; i < 10; i++)
     {
