@@ -20,7 +20,7 @@ public:
 		}
 	}
 	Datapoint(double lattitude, double longitude, double temp, std::string timestamp);
-    double getLattitude();
+	double getLattitude();
 	double getLongitude();
 	double getTemp();
 	std::string getTime();
