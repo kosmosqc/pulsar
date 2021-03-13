@@ -7,7 +7,9 @@ Datapoint::Datapoint(double lattitude, double longitude, double temp, std::strin
 	this->timestamp = timestamp;
 
 }
+Datapoint::Datapoint() {
 
+}
 double Datapoint::getLattitude() {
 	return this->lattitude;
 }
