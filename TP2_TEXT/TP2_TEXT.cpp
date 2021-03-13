@@ -1,40 +1,35 @@
 //Alain Gionet
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <set>
 #include <algorithm>
+#include <string>
 #include "Datapoint.h"
 
-std::vector<Datapoint>enOrdre(std::vector<Datapoint> data);
-
+void creeFichier(std::set<Datapoint> dataz);
 int main()
 {
-    int j = 0;
-    std::vector<Datapoint> data;
-    std::string id,timestamp;
-    double latitude,longitude,temprature;
+    std::set<Datapoint> data;
+    std::string id, timestamp, line;
+    double latitude, longitude, temperature;
+    
     std::ifstream linestream("rawdata.txt");
-
-    while (linestream >> latitude >> longitude >> id >> temprature >> timestamp)
+    while (!linestream==NULL )
     {
-        j++;
-        data.push_back(Datapoint(latitude, longitude, temprature, timestamp));
+      
+            linestream >> latitude >> longitude >> id >> temperature >> timestamp;
+            temperature = (temperature - 32) * (5.0 / 9.0);
+            data.insert(Datapoint(latitude, longitude, temperature, timestamp));
+     
     }
     linestream.close();
-
-    data = enOrdre(data);
-
+    creeFichier(data);
+}
+void creeFichier(std::set<Datapoint> data) {
     std::ofstream outfile("candata.txt");
-    for (int i=0; i < j; i++)
-    {
-        double temp = data[i].getTemp();
-        temp = (temp - 32) * (5.0/9.0);
-        data[i].setTemp(temp);
-        outfile << data[i].getTime() << " " << data[i].getLattitude() << " " << data[i].getLongitude() << " " << data[i].getTemp() << " " << std::endl;
+    std::set<Datapoint>::iterator it;
+    for (it = data.begin(); it != data.end(); ++it) {
+        std::cout << it->getTime() << " " << it->getLattitude() << " " << it->getLongitude() << " " << it->getTemp() << std::endl;
     }
     outfile.close();
-}
-std::vector<Datapoint>enOrdre(std::vector<Datapoint> data) {
-    std::sort(data.begin(), data.end());
-    return data;
 }

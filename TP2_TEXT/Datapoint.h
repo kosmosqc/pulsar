@@ -5,26 +5,35 @@
 #include <string>
 class Datapoint
 {
-protected:
+private:
 	std::string timestamp;
 	double longitude;
 	double lattitude;
 	double temp;
 public:
+
+	Datapoint(double lattitude, double longitude, double temp, std::string timestamp) {
+		this->lattitude = lattitude;
+		this->longitude = longitude;
+		this->temp = temp;
+		this->timestamp = timestamp;
+
+	}
 	bool operator< (const Datapoint& autre) const {
+		//std::cout << "Lattidue #1 "<<lattitude << "  Lattidue #2 " << autre.lattitude << " Resultat bool = " << (lattitude > autre.lattitude)<< std::endl;
+		
 		if (lattitude == autre.lattitude) {
 			return longitude < autre.longitude;
 		}
-		else {
+		else
+		{
 			return lattitude > autre.lattitude;
 		}
 	}
-	Datapoint(double lattitude, double longitude, double temp, std::string timestamp);
-	double getLattitude();
-	double getLongitude();
-	double getTemp();
-	std::string getTime();
-	void setTemp(double temp);
-		
+	double getLattitude()const { return this->lattitude; };
+	double getLongitude()const { return this->longitude; };
+	double getTemp()const { return this->temp; };
+	std::string getTime()const { return this->timestamp; };
+
 }; __Datapoint_H__
 #endif
