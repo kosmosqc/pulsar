@@ -3,32 +3,27 @@
 #include <fstream>
 #include <set>
 #include <algorithm>
-
 #include "Datapoint.h"
 
 void creeFichier(std::set<Datapoint> dataz);
 int main()
 {
 	std::set<Datapoint> data;
-	std::string id, timestamp, line, line2;
+	std::string id, timestamp, line;
 	double latitude, longitude, temperature;
-	std::ifstream test("rawdata.txt");
-	std::ifstream linestream("rawdata.txt");
-	while (!linestream == NULL)
+	std::ifstream fichierTest("rawdata.txt");
+	std::ifstream fichier("rawdata.txt");
+	while (!fichier == NULL)
 	{
-		
-			getline(test, line);
-			try {
-			//std::cout << line << " **length= "<< line.length() << std::endl;
+			getline(fichierTest, line);
+		try {
 			if (line.length() < 25 && line.length() > 0) {
-				linestream >> latitude >> longitude >> id;
+				fichier >> latitude >> longitude >> id;
 				throw 1;
-				
 			}
 			else {
-				linestream >> latitude >> longitude >> id >> temperature >> timestamp;
+				fichier >> latitude >> longitude >> id >> temperature >> timestamp;
 				temperature = (temperature - 32) * (5.0 / 9.0);
-				//	std::cout << latitude << longitude << id << temperature << timestamp <<" &&&&" <<std::endl;
 				data.insert(Datapoint(latitude, longitude, temperature, timestamp));
 			}
 		}
@@ -37,15 +32,15 @@ int main()
 		}
 
 	}
-	test.close();
-	linestream.close();
+	fichierTest.close();
+	fichier.close();
 	creeFichier(data);
 }
 void creeFichier(std::set<Datapoint> data) {
 	std::ofstream outfile("candata.txt");
 	std::set<Datapoint>::iterator it;
 	for (it = data.begin(); it != data.end(); ++it) {
-		outfile << it->getTime() << " " << it->getLattitude() << " " << it->getLongitude() << " " << it->getTemp() << std::endl;
+		std::cout << it->getTime() << " " << it->getLattitude() << " " << it->getLongitude() << " " << it->getTemp() << std::endl;
 	}
 	outfile.close();
 }
