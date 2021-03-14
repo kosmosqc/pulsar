@@ -28,7 +28,7 @@ int main()
 			}
 		}
 		catch (const int& code) {
-			std::cout << "Erreur une ligne incomplete a ete ignore " << std::endl;
+			//std::cout << "Erreur une ligne incomplete a ete ignore " << std::endl;
 		}
 
 	}

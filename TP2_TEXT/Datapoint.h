@@ -20,13 +20,13 @@ public:
 
 	}
 	bool operator< (const Datapoint& autre) const {
-		//std::cout << "Lattidue #1 "<<lattitude << "  Lattidue #2 " << autre.lattitude << " Resultat bool = " << (lattitude > autre.lattitude)<< std::endl;
-		
 		if (lattitude == autre.lattitude) {
+			//std::cout << "longitude #1 " << longitude << " <  longitude #2 " << autre.longitude << " Resultat bool = " << (longitude < autre.longitude) << std::endl;
 			return longitude < autre.longitude;
 		}
 		else
 		{
+			//std::cout << "Lattidue #1 " << lattitude << " >  Lattidue #2 " << autre.lattitude << " Resultat bool = " << (lattitude > autre.lattitude) << std::endl;
 			return lattitude > autre.lattitude;
 		}
 	}
