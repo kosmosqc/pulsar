@@ -19,13 +19,14 @@ public:
 		this->timestamp = timestamp;
 
 	}
-	bool operator< (const Datapoint& autre) const {
+	bool operator< (const Datapoint& autre) const { //sert a trier automatiquement le tableau de set 
 		if (lattitude == autre.lattitude) {
-			//std::cout << "longitude #1 " << longitude << " <  longitude #2 " << autre.longitude << " Resultat bool = " << (longitude < autre.longitude) << std::endl;
-			return longitude < autre.longitude;
+			
+			return longitude < autre.longitude; // dans le cas ou la (lattitude == autre.lattitude)  le triage s'effectue à partir de la longittude.
 		}
 		else
 		{
+			//print qui permet de voir la logique du triage 
 			//std::cout << "Lattidue #1 " << lattitude << " >  Lattidue #2 " << autre.lattitude << " Resultat bool = " << (lattitude > autre.lattitude) << std::endl;
 			return lattitude > autre.lattitude;
 		}
